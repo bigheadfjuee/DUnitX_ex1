@@ -9,19 +9,22 @@ uses
 
 type
   TForm1 = class(TForm)
-    ButtonExcute: TButton;
-    EditNum1: TEdit;
-    EditNum2: TEdit;
+    ButtonMyAdd: TButton;
+    EditValue1: TEdit;
+    EditValue2: TEdit;
     EditResult: TEdit;
-    LabelAdd: TLabel;
+    LabelAnd: TLabel;
     LabelResult: TLabel;
-    procedure ButtonExcuteClick(Sender: TObject);
+    ButtonMySub: TButton;
+    procedure ButtonMyAddClick(Sender: TObject);
+    procedure ButtonMySubClick(Sender: TObject);
   private
     { Private declarations }
 
   public
     { Public declarations }
-    function DoMyJob(txt1, txt2: string): string;
+    function MyAdd(txt1, txt2: string): string;
+    function MySub(txt1, txt2: string): string;
   end;
 
 var
@@ -31,24 +34,33 @@ implementation
 
 {$R *.dfm}
 
-function MyAdd(x,y : Integer) : Integer;
+procedure TForm1.ButtonMyAddClick(Sender: TObject);
 begin
-  Result := x + y;
+  EditResult.Text := MyAdd(EditValue1.Text, EditValue2.Text);
 end;
 
-
-procedure TForm1.ButtonExcuteClick(Sender: TObject);
+procedure TForm1.ButtonMySubClick(Sender: TObject);
 begin
-  EditResult.Text := DoMyJob(EditNum1.Text, EditNum2.Text);
+  EditResult.Text := MySub(EditValue1.Text, EditValue2.Text);
 end;
 
-function TForm1.DoMyJob(txt1: string; txt2: string) : string;
+function TForm1.MyAdd(txt1: string; txt2: string): string;
 var
-  x, y,r : Integer;
+  x, y, r: Integer;
 begin
   x := StrToInt(txt1);
   y := StrToInt(txt2);
-  r := MyAdd(x,y);
+  r := x + y;
+  result := r.ToString();
+end;
+
+function TForm1.MySub(txt1: string; txt2: string): string;
+var
+  x, y, r: Integer;
+begin
+  x := StrToInt(txt1);
+  y := StrToInt(txt2);
+  r := x - y;
   result := r.ToString();
 end;
 

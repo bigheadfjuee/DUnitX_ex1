@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{223563DE-66CC-4AF2-8F31-A37761F6A493}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Project1.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="MyTestConsole.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="MyTestGUI.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Project1">
+        <MSBuild Projects="Project1.dproj"/>
+    </Target>
+    <Target Name="Project1:Clean">
+        <MSBuild Projects="Project1.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project1:Make">
+        <MSBuild Projects="Project1.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MyTestConsole">
+        <MSBuild Projects="MyTestConsole.dproj"/>
+    </Target>
+    <Target Name="MyTestConsole:Clean">
+        <MSBuild Projects="MyTestConsole.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MyTestConsole:Make">
+        <MSBuild Projects="MyTestConsole.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MyTestGUI">
+        <MSBuild Projects="MyTestGUI.dproj"/>
+    </Target>
+    <Target Name="MyTestGUI:Clean">
+        <MSBuild Projects="MyTestGUI.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MyTestGUI:Make">
+        <MSBuild Projects="MyTestGUI.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Project1;MyTestConsole;MyTestGUI"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Project1:Clean;MyTestConsole:Clean;MyTestGUI:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Project1:Make;MyTestConsole:Make;MyTestGUI:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
